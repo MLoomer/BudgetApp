@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <html xmlns:th="https://www.thymeleaf.org">
+    <title>Account Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Add Account</h1>
+<form action="#" th:action="@{/addaccount}" th:object="${account}" method="POST"}>
+    <!--<div th:if="${#fields.hasErrors('*')}">
+        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+    </div>-->
+
+    <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
+
+    <p><input type="text" path="price" th:field="*{balance}" placeholder= "Balance" class="form-control mb-4 col-4"/></p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+    <a href="http://localhost:8080/">Link
+        to Main Screen</a>
+</body>
+</html>
