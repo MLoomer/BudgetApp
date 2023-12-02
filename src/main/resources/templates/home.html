@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
 <p> this is the home page!</p>
-
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Account Name</th>
+        <th>Balance</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tmpaccount : ${accounts}">
+        <td th:text="${tmpaccount.getName()}">1</td>
+        <td th:text="${tmpaccount.getBalance()}">1</td>
+        <td><a th:href="@{/removeaccount(accId=${tmpaccount.id})}" class="btn btn-primary btn-sm mb-3"
+               onclick="if(!(confirm('Are you sure you want to delete this Account?')))return false">Delete</a>
+            <!--TODO: Add Delete feature -->
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
