@@ -28,6 +28,30 @@ import java.util.Objects;
             return (List<Account>)
                     accountRepository.findAll();
         }
+
+        @Override
+        public Account fetchById(Long accountId) {
+            List<Account> accs = (List<Account>) accountRepository.findAll();
+            for (Account account : accs) {
+                if (account.id == accountId) {
+                    return account;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public Account updateBalance(Long accountId, int balance) {
+            Account acc = fetchById(accountId);
+            if (acc != null) {
+                acc.setBalance(balance);
+                accountRepository.save(acc);
+                return acc;
+            }
+            return null;
+        }
+
+
         // Delete operation
         @Override
         public void deleteAccountById(Long departmentId)

@@ -40,7 +40,8 @@ public class AccountController {
     @PostMapping("/addaccount")
     public String submitForm(@Valid @ModelAttribute("Account") Account account, Model theModel, BindingResult bindingResult) {
         AccountRepository repo = context.getBean(AccountRepository.class);
-        ArrayList<Account> accs = (ArrayList<Account>) repo.findAll();
+        List<Account> accs = accountService.fetchAccountList();
+        //TODO prevent matching name existing, will change to data validation later
         for (Account acc : accs) {
             if (acc.getName().equals(account.getName())) {
                 return "addaccountfailure";
@@ -55,10 +56,32 @@ public class AccountController {
     }
 
     @GetMapping("/removeaccount")
-    public String removeAccount(@Valid @RequestParam("accId") int theId, String accString, Model theModel) {
-        accountService.deleteAccountById((long) theId);
+    public String removeAccount(int accId, String accString, Model theModel) {
+        accountService.deleteAccountById((long) accId);
         theModel.addAttribute("accName", accString);
         return "deleteaccount";
+    }
+
+    @GetMapping("/updateaccount")
+    public String updateAccount(int accId, String accString, Model theModel) {
+        Account account = accountService.fetchById((long) accId);
+        if (account != null) {
+            theModel.addAttribute("account",account);
+            return "updateaccount";
+        }
+        return "home";
+    }
+
+    @PostMapping("/updateaccount")
+    public String submitUpdateAccount(@Valid @ModelAttribute("Account") Account account, Model theModel) {
+        //TODO: Make account balance update
+        Account acc = accountService.updateBalance(account.getId(), account.getBalance());
+        if (acc != null) {
+            theModel.addAttribute("account",acc);
+            return "updateaccountsuccess";
+        }
+        System.out.println("failed to update for "+account.id);
+        return "updateaccount";
     }
 
 }

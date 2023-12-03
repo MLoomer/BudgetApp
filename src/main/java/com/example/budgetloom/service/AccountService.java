@@ -12,6 +12,9 @@ public interface AccountService {
         // Read operation
         List<Account> fetchAccountList();
 
+        Account fetchById(Long accountId);
+
+        Account updateBalance(Long accountID, int balance);
 
         // Delete operation
         void deleteAccountById(Long accountId);

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+</head>
+<body>
+<h1>Update Balance on Account <span th:text="${account.name}"></span></h1>
+<form action="#" th:action="@{/updateaccount}" th:object="${account}" method="POST"}>
+    <!--<div th:if="${#fields.hasErrors('*')}">
+        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+    </div>-->
+    <p><input type="hidden" path="id" th:field="*{id}" class="form-control mb-4 col-4"/></p>
+    <p><input type="text" path="balance" th:field="*{balance}" placeholder= "Balance" class="form-control mb-4 col-4"/></p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<a href="/">Link to Main Screen</a>
+</body>
+</html>
