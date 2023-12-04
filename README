@@ -1,7 +1,11 @@
 Budget App being built to further develop Java + Spring Boot knowledge.
-Goal is to be similar to YNAB but more bare bones.
+Goal is to be similar to YNAB but more bare bones as this is being developed outside of work/school hours.
 
-Currently have Accounts in working order
-Need to develop Transaction Class
-Thinking itll work by accounts having a balance, transactions deduct from it.
-will probably have transactions save iin its own repo with the account id# a field in them
+Account Class Created
+Transaction Class Created
+
+Missing:
+Transaction Tests
+Form Validation
+Transaction CRUD
+Homepage transaction display

@@ -20,16 +20,17 @@ public class Transaction {
     private Account account;
 
     public Transaction() {
-        this(null, null, 0F);
+        this(null, null, null, 0F);
     }
-    public Transaction(Date date, Boolean debit, float amount) {
+    public Transaction(Date date, Account account, Boolean debit, float amount) {
         this.setDate(date);
         this.setDebit(debit);
         this.setAmount(amount);
+        this.setAccount(account);
     }
 
-    public Transaction(Boolean debit, float amount) {
-        this(new Date(), debit, amount);
+    public Transaction(Boolean debit, Account account, float amount) {
+        this(new Date(), account, debit, amount);
     }
 
 
@@ -81,6 +82,14 @@ public class Transaction {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
 }
