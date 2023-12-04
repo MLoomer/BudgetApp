@@ -1,8 +1,11 @@
 package com.example.budgetloom.domain;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Transaction {
@@ -15,21 +18,23 @@ public class Transaction {
     private String notes;
     private Date date;
 
+    private Boolean debit;
+
     @ManyToOne
     @JoinColumn(name="account_id")
     private Account account;
 
     public Transaction() {
-        this(null, null, null, 0F);
+        this(null, null, "", 0F);
     }
-    public Transaction(Date date, Account account, Boolean debit, float amount) {
+    public Transaction(Date date, Account account, String debit, float amount) {
         this.setDate(date);
         this.setDebit(debit);
         this.setAmount(amount);
         this.setAccount(account);
     }
 
-    public Transaction(Boolean debit, Account account, float amount) {
+    public Transaction(String debit, Account account, float amount) {
         this(new Date(), account, debit, amount);
     }
 
@@ -66,15 +71,19 @@ public class Transaction {
         this.date = date;
     }
 
+    public void setDebit(String type) {
+
+        if (type.equals("deposit")) {
+            this.debit = true;
+        } else if (type.equals("charge")) {
+            this.debit = false;
+        }
+    }
+
     public Boolean getDebit() {
-        return debit;
+        return this.debit;
     }
 
-    public void setDebit(Boolean debit) {
-        this.debit = debit;
-    }
-
-    private Boolean debit;
 
     public long getId() {
         return id;

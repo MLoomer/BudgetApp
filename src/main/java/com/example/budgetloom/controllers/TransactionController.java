@@ -37,8 +37,9 @@ public class TransactionController {
     }
 
     @PostMapping("/addtransaction")
-    public String submitForm(@Valid @ModelAttribute("Transaction") Transaction transaction, BindingResult bindingResult) {
+    public String submitForm(@Valid @ModelAttribute("Transaction") Transaction transaction, @ModelAttribute("charge") String charge, BindingResult bindingResult) {
         TransactionRepository repo = context.getBean(TransactionRepository.class);
+        transaction.setDebit(charge);
         repo.save(transaction);
         if(bindingResult.hasErrors()){
             return "addtransactionfailure";

@@ -15,8 +15,12 @@
     </div>-->
     <p><input type="date" th:field="*{date}" class="form-control mb-4 col-4"/></p>
     <!--TODO: fix to be a selection-->
+    <label path="debit">Select the transaction type: </label>
+    <select name="charge" title="charge" multiple="true" size="3">
+        <option value="deposit" label="Deposit" />
+        <option value="charge" label="Charge" />
+    </select>
     <!--TODO: pass account to form-->
-    <p><input type="text" path="charge" th:field="*{debit}" placeholder= "charge" class="form-control mb-4 col-4"/></p>
     <p><input type="text" path="amount" th:field="*{amount}" placeholder= "0.0" class="form-control mb-4 col-4"/></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
