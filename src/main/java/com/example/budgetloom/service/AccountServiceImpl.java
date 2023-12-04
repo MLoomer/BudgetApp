@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 // Class implementing DepartmentService class
@@ -41,7 +40,7 @@ import java.util.Objects;
         }
 
         @Override
-        public Account updateBalance(Long accountId, int balance) {
+        public Account updateBalance(Long accountId, float balance) {
             Account acc = fetchById(accountId);
             if (acc != null) {
                 acc.setBalance(balance);

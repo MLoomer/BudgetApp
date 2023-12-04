@@ -2,14 +2,20 @@ package com.example.budgetloom.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Account {
     private String name;
-    private int balance;
+    private float balance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToMany(mappedBy="Account")
+    private Set<Transaction> transactions = new HashSet<>();
 
     Account(String name, int balance) {
         this.name = name;
@@ -25,11 +31,11 @@ public class Account {
         this.balance = 0;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
@@ -46,6 +52,14 @@ public class Account {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
 

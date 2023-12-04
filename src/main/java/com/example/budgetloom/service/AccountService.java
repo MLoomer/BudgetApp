@@ -14,7 +14,7 @@ public interface AccountService {
 
         Account fetchById(Long accountId);
 
-        Account updateBalance(Long accountID, int balance);
+        Account updateBalance(Long accountID, float balance);
 
         // Delete operation
         void deleteAccountById(Long accountId);
