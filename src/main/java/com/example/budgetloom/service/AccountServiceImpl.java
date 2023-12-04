@@ -53,8 +53,8 @@ import java.util.List;
 
         // Delete operation
         @Override
-        public void deleteAccountById(Long departmentId)
+        public void deleteAccountById(Long accountId)
         {
-            accountRepository.deleteById(departmentId);
+            accountRepository.deleteById(accountId);
         }
     }

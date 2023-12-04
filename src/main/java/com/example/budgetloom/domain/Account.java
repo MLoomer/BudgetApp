@@ -14,7 +14,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy="Account")
+    @OneToMany(mappedBy="account")
     private Set<Transaction> transactions = new HashSet<>();
 
     Account(String name, int balance) {

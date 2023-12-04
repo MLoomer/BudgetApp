@@ -15,6 +15,10 @@ public class Transaction {
     private String notes;
     private Date date;
 
+    @ManyToOne
+    @JoinColumn(name="account_id")
+    private Account account;
+
     public Transaction() {
         this(null, null, 0F);
     }
