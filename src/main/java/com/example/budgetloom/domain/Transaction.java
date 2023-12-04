@@ -2,7 +2,9 @@ package com.example.budgetloom.domain;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,26 +18,27 @@ public class Transaction {
     private float amount;
     private String label;
     private String notes;
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
-    private Boolean debit;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name="account_id")
     private Account account;
 
     public Transaction() {
-        this(null, null, "", 0F);
+        this(LocalDate.now(), null, null, 0F);
     }
-    public Transaction(Date date, Account account, String debit, float amount) {
+    public Transaction(LocalDate date, Account account, String type, float amount) {
         this.setDate(date);
-        this.setDebit(debit);
+        this.setType(type);
         this.setAmount(amount);
         this.setAccount(account);
     }
 
-    public Transaction(String debit, Account account, float amount) {
-        this(new Date(), account, debit, amount);
+    public Transaction(String type, Account account, float amount) {
+        this(LocalDate.now(), account,type, amount);
     }
 
 
@@ -63,25 +66,20 @@ public class Transaction {
         this.notes = notes;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setDebit(String type) {
-
-        if (type.equals("deposit")) {
-            this.debit = true;
-        } else if (type.equals("charge")) {
-            this.debit = false;
-        }
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Boolean getDebit() {
-        return this.debit;
+    public String getType() {
+        return this.type;
     }
 
 

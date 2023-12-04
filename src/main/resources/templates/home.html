@@ -9,6 +9,7 @@
 <body>
 <p> this is the home page!</p>
 <a href="/addaccount">Add Account</a>
+<h2>Accounts</h2>
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -26,9 +27,29 @@
                onclick="if(!(confirm('Are you sure you want to update the balance in this Account?')))return false">Update Balance</a>
             <a th:href="@{/removeaccount(accId=${tmpaccount.id},accString=${tmpaccount.getName()})}" class="btn btn-primary btn-sm mb-3"
                onclick="if(!(confirm('Are you sure you want to delete this Account?')))return false">Delete</a>
+            <a th:href="@{/addtransaction(accId=${tmpaccount.id},accString=${tmpaccount.getName()})}" class="btn btn-primary btn-sm mb-3"
+               >Add Transaction</a>
         </td>
     </tr>
     </tbody>
 </table>
+<h2>Transactions</h2>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="temptrn : ${transactions}">
+        <td th:text="${temptrn.getDate()}">1</td>
+        <td th:text="${temptrn.getType()}">1</td>
+        <td th:text="${temptrn.getAmount()}">1</td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

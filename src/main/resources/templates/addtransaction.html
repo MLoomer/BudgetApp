@@ -8,18 +8,18 @@
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
-<h1>Add Transaction</h1>
+<h1>Add Transaction to account <span th:text="${accName}"></span></h1>
 <form action="#" th:action="@{/addtransaction}" th:object="${transaction}" method="POST"}>
     <!--<div th:if="${#fields.hasErrors('*')}">
         <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
     </div>-->
     <p><input type="date" th:field="*{date}" class="form-control mb-4 col-4"/></p>
     <!--TODO: fix to be a selection-->
-    <label path="debit">Select the transaction type: </label>
-    <select name="charge" title="charge" multiple="true" size="3">
-        <option value="deposit" label="Deposit" />
-        <option value="charge" label="Charge" />
-    </select>
+    <div class="form-group" style="overflow:auto">
+        <select class="form-control" th:field="*{type}"  id="chargeTypes" >
+            <option th:each="type : ${chargeTypes}" th:value="${type}" th:text="${type}"></option>
+        </select>
+    </div>
     <!--TODO: pass account to form-->
     <p><input type="text" path="amount" th:field="*{amount}" placeholder= "0.0" class="form-control mb-4 col-4"/></p>
     <p><input type="submit" value="Submit" /></p>
