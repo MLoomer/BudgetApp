@@ -3,14 +3,13 @@ package com.example.budgetloom.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Accounts")
 public class Account {
-    public String name;
-    public int balance;
+    private String name;
+    private int balance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long id;
+    private long id;
 
     Account(String name, int balance) {
         this.name = name;

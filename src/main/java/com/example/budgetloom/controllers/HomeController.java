@@ -17,7 +17,7 @@ public class HomeController {
     @Autowired
     private ApplicationContext context;
 
-    private AccountService accountService;
+    private final AccountService accountService;
     public HomeController(AccountService accountService){
         this.accountService=accountService;
     }

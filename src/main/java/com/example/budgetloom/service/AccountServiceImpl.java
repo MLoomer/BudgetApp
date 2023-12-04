@@ -33,7 +33,7 @@ import java.util.Objects;
         public Account fetchById(Long accountId) {
             List<Account> accs = (List<Account>) accountRepository.findAll();
             for (Account account : accs) {
-                if (account.id == accountId) {
+                if (account.getId() == accountId) {
                     return account;
                 }
             }

@@ -22,7 +22,7 @@ import java.util.Optional;
 public class AccountController {
     @Autowired
     private ApplicationContext context;
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public AccountController(AccountService accountService){
         this.accountService=accountService;
@@ -80,7 +80,7 @@ public class AccountController {
             theModel.addAttribute("account",acc);
             return "updateaccountsuccess";
         }
-        System.out.println("failed to update for "+account.id);
+        System.out.println("failed to update for "+account.getId());
         return "updateaccount";
     }
 
