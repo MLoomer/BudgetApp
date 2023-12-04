@@ -42,6 +42,7 @@ public class TransactionController {
         String[] chargeTypes = {"Charge","Deposit"};
         theModel.addAttribute("chargeTypes",chargeTypes);
         theModel.addAttribute("accName",accString);
+        theModel.addAttribute("accId",accId);
         return "addtransaction";
     }
 

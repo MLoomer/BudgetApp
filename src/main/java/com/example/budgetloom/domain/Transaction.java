@@ -95,6 +95,10 @@ public class Transaction {
         return account;
     }
 
+    public String getAccountName() {
+        return account.getName();
+    }
+
     public void setAccount(Account account) {
         this.account = account;
     }
