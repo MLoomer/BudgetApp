@@ -4,6 +4,9 @@ Goal is to be similar to YNAB but more bare bones as this is being developed out
 Account Class Created
 Transaction Class Created
 
+Working on:
+add transaction form to add a transaction
+
 Missing:
 Transaction Tests
 Form Validation
