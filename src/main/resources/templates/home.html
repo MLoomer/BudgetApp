@@ -7,7 +7,6 @@
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
-<p> this is the home page!</p>
 <a href="/addaccount">Add Account</a>
 <h2>Accounts</h2>
 <table class="table table-bordered table-striped">
@@ -41,6 +40,7 @@
         <th>Type</th>
         <th>Amount</th>
         <th>Account</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -49,6 +49,12 @@
         <td th:text="${temptrn.getType()}">1</td>
         <td th:text="${temptrn.getAmount()}">1</td>
         <td th:text="${temptrn.getAccountName()}">1</td>
+        <td>
+        <a th:href="@{/updatetransaction(transId=${temptrn.getId()})}" class="btn btn-primary btn-sm mb-3"
+           onclick="if(!(confirm('Are you sure you want to update this transaction?')))return false">Modify</a>
+        <a th:href="@{/deletetransaction(accId=${temptrn.getAccount().getId()})}" class="btn btn-primary btn-sm mb-3"
+           onclick="if(!(confirm('Are you sure you want to delete this transaction?')))return false">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

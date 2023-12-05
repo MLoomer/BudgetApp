@@ -51,10 +51,29 @@ public class TransactionController {
         System.out.println(transaction.toString());
         TransactionRepository repo = context.getBean(TransactionRepository.class);
         repo.save(transaction);
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "addtransactionfailure";
         }
+        Account account = transaction.getAccount();
+        if (transaction.getType().equals("Charge")) {
+            account.setBalance(account.getBalance() - transaction.getAmount());
+        } else {
+            account.setBalance(account.getBalance() + transaction.getAmount());
+        }
+        AccountRepository repoA = context.getBean(AccountRepository.class);
+        repoA.save(account);
         return "addtransactionsuccess";
+    }
+
+    @GetMapping("/updatetransaction")
+    public String updateTransactionPage(Model theModel, int transId) {
+        Transaction transaction= transactionService.fetchById((long) transId);
+        theModel.addAttribute("transaction",transaction);
+        String[] chargeTypes = {"Charge","Deposit"};
+        theModel.addAttribute("chargeTypes",chargeTypes);
+        theModel.addAttribute("accName",transaction.getAccountName());
+        theModel.addAttribute("accId",transaction.getAccount().getId());
+        return "addtransaction";
     }
 
 

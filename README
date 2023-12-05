@@ -3,12 +3,12 @@ Goal is to be similar to YNAB but more bare bones as this is being developed out
 
 Account Class Created
 Transaction Class Created
+add transaction form to add a transaction
 
 Working on:
-add transaction form to add a transaction
+update transaction form - linked to add transaction. Not updating transaction amount, is updating account balance
+delete transaction - none of it added to controller or html added yet
 
 Missing:
 Transaction Tests
 Form Validation
-Transaction CRUD
-Homepage transaction display
