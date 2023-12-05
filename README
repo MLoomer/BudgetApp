@@ -6,8 +6,7 @@ Transaction Class Created
 add transaction form to add a transaction
 
 Working on:
-update transaction form - linked to add transaction. Not updating transaction amount, is updating account balance
-delete transaction - none of it added to controller or html added yet
+Formatting
 
 Missing:
 Transaction Tests

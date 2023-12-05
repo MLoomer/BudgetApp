@@ -19,6 +19,7 @@
             <option th:each="type : ${chargeTypes}" th:value="${type}" th:text="${type}"></option>
         </select>
     </div>
+    <p><input type="hidden" th:field="*{id}" class="form-control mb-4 col-4"/></p>
     <p><input type="hidden" th:field="*{account}" th:value="${accId}" class="form-control mb-4 col-4"/></p>
     <p><input type="text" path="amount" th:field="*{amount}" placeholder= "0.0" class="form-control mb-4 col-4"/></p>
     <p><input type="submit" value="Submit" /></p>

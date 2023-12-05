@@ -48,7 +48,7 @@ public class TransactionController {
 
     @PostMapping("/addtransaction")
     public String submitForm(@Valid @ModelAttribute("Transaction") Transaction transaction, BindingResult bindingResult) {
-        System.out.println(transaction.toString());
+        System.out.println(transaction.getId());
         TransactionRepository repo = context.getBean(TransactionRepository.class);
         repo.save(transaction);
         if (bindingResult.hasErrors()) {
@@ -74,6 +74,21 @@ public class TransactionController {
         theModel.addAttribute("accName",transaction.getAccountName());
         theModel.addAttribute("accId",transaction.getAccount().getId());
         return "addtransaction";
+    }
+
+    @GetMapping("/deletetransaction")
+    public String removeAccount(int transId, Model theModel) {
+        Transaction transaction = transactionService.fetchById((long) transId);
+        Account account = accountService.fetchById(transaction.getAccount().getId());
+        transactionService.deleteTransactionById(transaction.getId());
+        if (transaction.getType().equals("Charge")) {
+            account.setBalance(account.getBalance() + transaction.getAmount());
+        } else {
+            account.setBalance(account.getBalance() - transaction.getAmount());
+        }
+        AccountRepository repoA = context.getBean(AccountRepository.class);
+        repoA.save(account);
+        return "deletetransaction";
     }
 
 
