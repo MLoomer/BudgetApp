@@ -1,9 +1,4 @@
-Budget App being built to further develop Java + Spring Boot knowledge.
-Goal is to be similar to YNAB but more bare bones as this is being developed outside of work/school hours.
-
-Account Class Created
-Transaction Class Created
-add transaction form to add a transaction
+Budget App being built to further develop Java + Spring Boot knowledge outside of whats gained during school hours.
 
 Working on:
 Formatting
