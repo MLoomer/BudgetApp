@@ -10,9 +10,9 @@
 <body>
 <h1>Add Account</h1>
 <form action="#" th:action="@{/addaccount}" th:object="${account}" method="POST"}>
-    <!--<div th:if="${#fields.hasErrors('*')}">
+    <div th:if="${#fields.hasErrors('*')}">
         <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-    </div>-->
+    </div>
 
     <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
