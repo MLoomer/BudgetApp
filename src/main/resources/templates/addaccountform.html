@@ -10,14 +10,11 @@
 <body>
 <h1>Add Account</h1>
 <form action="#" th:action="@{/addaccount}" th:object="${account}" method="POST"}>
-    <div th:if="${#fields.hasErrors('*')}">
-        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-    </div>
 
     <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
     <p><input type="text" path="price" th:field="*{balance}" placeholder= "Balance" class="form-control mb-4 col-4"/></p>
-
+        <td th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}">Balance Error</td>
     <p><input type="submit" value="Submit" /></p>
 </form>
 
